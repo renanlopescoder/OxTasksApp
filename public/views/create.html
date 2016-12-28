@@ -1,0 +1,45 @@
+  <!-- Modal Core -->
+  <!-- <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+  <hr>
+  <div class="row" ng-controller="TaskController">
+  <div class="col-xs-12">
+  <form method="POST" ng-submit="createTask(newTask)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h5 class="modal-title" id="myModalLabel">Task</h5>
+        </div>
+        <div class="modal-body">
+          
+            <div class="md-form input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">turned_in</i>
+              </span>
+              <input id="taskTitle" type="text" class="form-control"
+              name="title" ng-model="newTask.title" placeholder="Task Title" value="{{newTask.title}}">
+            </div>
+            <div class="md-form input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">subject</i>
+              </span>
+              <input id="taskDescription" type="text" class="form-control"
+              name="description" ng-model="newTask.description" placeholder="Task Description" value="{{newTask.description}}">
+            </div>   
+            <i class="material-icons">label</i>
+            <hr>
+            <div class="text-center">
+              <span class="label label-default">Home</span>
+              <span class="label label-primary">Work</span>
+              <span class="label label-info">Academic</span>
+              <span class="label label-danger">Priority</span>
+            </div>
+            <hr>
+            <div class="text-right">
+              <button data-dismiss="modal" class="btn btn-warning btn-just-icon"><i class="material-icons">not_interested</i></button>
+              <button type="submit" data-dismiss="modal" class="btn btn-success btn-just-icon"><i class="material-icons">playlist_add</i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="taskApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta name="author" content="Renan Lopes">
+  <title>OxTasks App</title>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/mdb.css" rel="stylesheet">
+  <link href="assets/css/material-kit.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+  <nav class="navbar navbar-primary" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img class="img-responsive" src="img/logo-renanlopes.png"> <span class="hidden-xs">Tasks</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#tasks-list">Tarefas</a></li>
+          <li><a href="#tasks-done">Taferas Concluidas</a></li>
+          <li><a href="#create" data-toggle="modal" data-target="#newTaskModal">Nova Tarefa</a></li>
+          <li><a href="#about">Sobre</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <ul class="nav nav-pills nav-pills-primary" role="tablist">
+      <li class="active">
+        <a role="tab" data-toggle="tab" href="#list">
+          <i class="material-icons">list</i>
+          Andamento
+        </a>
+      </li>
+      <li>
+        <a href="#list-done" role="tab" data-toggle="tab">
+          <i class="material-icons">done</i>
+          Concluidas
+        </a>
+      </li>
+      <li class="hidden-xs">
+        <a href="#create" role="tab" data-toggle="tab">
+          <i class="material-icons">library_add</i>
+          Nova
+        </a>
+      </li>
+      <li>
+        <a href="#about" role="tab" data-toggle="tab">
+          <i class="material-icons">assignment</i>
+          Sobre
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="container-fluid">
+    <div id="page-content-wrapper">
+      <div ng-view class="view-animate"></div>
+    </div>
+  </section>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/tether.js"></script>
+  <script src="assets/js/mdb.js"></script>
+  <script src="assets/js/nouislider.min.js"></script>
+  <script src="assets/js/angular.min.js" charset="utf-8"></script>
+  <script src="assets/js/angular-route.min.js" charset="utf-8"></script>
+  <script src="assets/js/material.min.js"></script>
+  <script src="js/main.js" charset="utf-8"></script>
+  <script src="js/controllers/tasks-controller.js" charset="utf-8"></script>
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+    $('#newTaskModal').on('shown.bs.modal', function () {
+      $('#taskTitle').focus();
+    });
+  </script>
+</body>
+</html>
