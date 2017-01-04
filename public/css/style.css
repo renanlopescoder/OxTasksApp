@@ -1,13 +1,15 @@
-html, body{
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  overflow-x: hidden!important;
-  box-sizing: border-box;
-  flex-wrap: wrap;
+html, body {
+    max-width: 100%;
+    background: url("../img/theme-01/background-desktop.jpg") no-repeat center center fixed!important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow-x: hidden!important;
+    box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
-/* fallback */
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -19,7 +21,7 @@ html, body{
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px;
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -27,35 +29,29 @@ html, body{
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-
-  /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
   font-feature-settings: 'liga';
 }
 
-.coder-icon{
-  min-width:50px;
-  max-width:70px;
-  margin:4px;
+.coder-icon {
+  min-width: 50px;
+  max-width: 70px;
+  margin: 4px;
 }
 
-@media (max-width: 768px){
-  .fixed-button{
-    position:fixed!important;
+@media (max-width: 768px) {
+  .fixed-button {
+    position: fixed!important;
     bottom: 20px;
     margin-left: 77%!important;
     z-index: 99;
   }
+
   html, body{
     max-width: 100%;
-    background: url("../img/back.png") no-repeat center center fixed!important;
+    background: url("../img/theme-01/background-mobile.png") no-repeat center center fixed!important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -1,66 +1,134 @@
-taskApp.controller('TaskController', function($scope, $routeParams, $http, $location){
+// Main Controller of Tasks
+// Controle principal de tarefas
+
+taskApp.controller('TaskController', function ($scope, $routeParams, $http, $location) {
   $scope.tasks = [];
 
-function init(){
-    $http.get('/list')
-    .success(function(retorno) {
-      $scope.tasks = retorno;
-    })
-    .error(function(erro) {
-      console.log(erro)
-    });
+// Data atual formatada (Brasil)
+// Current Date Formatted (Brasil)
+
+var getDateFormated = function(){
+    var date = new Date();
+    var dateTimeFormatted = 
+    date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
+    return dateTimeFormatted;
 }
 
-init();
+var dateFormat = function(date){
+    if(date == null || date == undefined){
+      date = new Date();
+    }
+    var dateTimeFormatted = 
+    date.getDate() +'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
+    return dateTimeFormatted;
+}
 
-  $scope.createTask = function(task) {
+// Função inicial para obter a lista de tarefas
+// Initial function to get the list of tasks
+
+  function init() {
+    $http.get('/list')
+      .success(function (retorno) {
+        $scope.tasks = retorno;
+      })
+      .error(function (erro) {
+        console.log(erro)
+      });
+  }
+
+// Executando a função para obter a lista de tarefas
+// Running the function to get the task list
+
+  init();
+
+// Função para adicionar nova tarefa
+// Function to create a new task
+
+  $scope.createTask = function (task) {
+
     task.active = 'false';
-    task.progress = 'progress'; 
-    $http.post('/create' , task)
-    .success(function(retorno) {
-      $location.path('/list');
-    })
-    .error(function(erro) {
-      console.log(erro)
-    });
+    task.progress = 'progress';
+    task.taskDate = dateFormat(task.taskDate);
+    
+    if(task.title == undefined || task.title == null){
+      task.title = 'No Title';
+    }
+    
+    if(task.description == undefined || task.description == null){
+      task.description = 'No Description';
+    }
+    $scope.newTask = "";
+    $http.post('/create', task)
+      .success(function (retorno) {
+        init();     
+      })
+      .error(function (erro) {
+        console.log(erro)
+      });
   };
 
-  $scope.saveTask = function(task){
-    task.active = 'false';
-    $http.post('/update/' + task._id, task)
-    .success(function(retorno) {
-      $scope.taskActive(task,'false');
-    })
-    .error(function(erro) {
-      console.log(erro)
-    });
-  };
+// Função para alterar estado da tarefa para mostrar formulário de alteração com dados da tarefa
+// Function for chage task state to show the update form with the task data
 
-  $scope.taskProgress = function(task,param){
-    task.progress = param;
-    $http.post('/update/' + task._id, task)
-    .success(function(retorno) {
-      init();
-    })
-    .error(function(erro) {
-      console.log(erro)
-    });
-  };
-  
-  $scope.taskActive = function(task,active){
+  $scope.taskActive = function (task, active) {
     $scope.tasks[$scope.tasks.indexOf(task)].active = active;
     $scope.saveTask.title = $scope.tasks[$scope.tasks.indexOf(task)].title;
     $scope.saveTask.description = $scope.tasks[$scope.tasks.indexOf(task)].description;
+    $scope.saveTask.taskDate = $scope.tasks[$scope.tasks.indexOf(task)].taskDate;
   };
-  $scope.removeTask = function(task) { 
+
+// Função para efetuar alteração da tarefa
+// Function to perform task change
+
+  $scope.saveTask = function (task) {
+    task.active = 'false';
+    $http.post('/update/' + task._id, task)
+      .success(function (retorno) {
+        $scope.taskActive(task, 'false');
+      })
+      .error(function (erro) {
+        console.log(erro)
+      });
+  };
+
+// Função para alterar o progresso da tarefa (progress / done)
+// Function for chage task progress (progress / done)
+
+  $scope.taskProgress = function (task, param) {
+    task.progress = param;
+    var progressStatus;
+
+    if(param == 'done'){
+      progressStatus = 'Completed at ';
+    }
+
+    if(param == 'progress'){
+      progressStatus = 'Recovered at ';
+    }
+
+    task.updatedStatusDate =  progressStatus + getDateFormated();
+    $http.post('/update/' + task._id, task)
+      .success(function (retorno) {
+        init();
+      })
+      .error(function (erro) {
+        console.log(erro)
+      });
+  };
+
+// Função para remover tarefa
+// Function to delete the task
+
+  $scope.removeTask = function (task) {
     $http.delete('/remove/' + task._id)
-    .success(function(retorno) {
-      init();
-    })
-    .error(function(erro) {
-      console.log(erro)
-    });
+      .success(function (retorno) {
+        init();
+      })
+      .error(function (erro) {
+        console.log(erro)
+      });
   };
+
 });
 
 

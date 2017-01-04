@@ -18,6 +18,14 @@ var schema = mongoose.Schema({
 	progress: {
 		type: String,
 		required: true
+	},
+	taskDate: {
+		type: String,
+		required: false
+	},
+	updatedStatusDate: {
+		type: String,
+		required: false
 	} 
 });
 

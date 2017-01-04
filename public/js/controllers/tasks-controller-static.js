@@ -1,14 +1,12 @@
-/* global taskApp */
-
 taskApp.factory('TaskFactory', function(){
   var id =1;
-  // var tasks = [
-  // {id : id++,title: 'Front-End Framework AngularJS',description : 'Single Page App with AngularJS',active:'false', progress:'pending'},
-  // {id : id++,title: 'Material Design for Bootstrap',description : 'UI (MDB) (Creative Tim)',active:'false',progress:'pending'},
-  // {id : id++,title: 'Cordova and PhoneGap',description : 'Application can be run in Smartphone',active:'false',progress:'pending'},
-  // {id : id++,title: 'Material Icons',description : 'Material Icons (Google)',active:'false',progress:'pending'},
-  // {id : id++,title: 'Task Completed Example',description : 'Just for example task done =)',active:'false',progress:'done'}
-  // ];
+  var tasks = [
+  {id : id++,title: 'Front-End Framework AngularJS',description : 'Single Page App with AngularJS',active:'false', progress:'pending'},
+  {id : id++,title: 'Material Design for Bootstrap',description : 'UI (MDB) (Creative Tim)',active:'false',progress:'pending'},
+  {id : id++,title: 'Cordova and PhoneGap',description : 'Application can be run in Smartphone',active:'false',progress:'pending'},
+  {id : id++,title: 'Material Icons',description : 'Material Icons (Google)',active:'false',progress:'pending'},
+  {id : id++,title: 'Task Completed Example',description : 'Just for example task done =)',active:'false',progress:'done'}
+  ];
   var factory = {};
 
   factory.getTasks = function(){     

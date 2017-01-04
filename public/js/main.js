@@ -18,6 +18,9 @@ taskApp.config(['$routeProvider','$locationProvider',
     }).when('/about', {
        templateUrl : 'views/about.html',
        controller : 'TaskController'
+    }).when('/calendar', {
+       templateUrl : 'views/calendar.html',
+       controller : 'TaskController'
     })
    .otherwise ({ redirectTo: '/' });
 }]);
