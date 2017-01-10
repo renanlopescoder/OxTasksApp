@@ -1,16 +1,19 @@
-var taskApp = angular.module('taskApp',['ngRoute']);
+var taskApp = angular.module('taskApp',['ngRoute','services']);
 
 taskApp.config(['$routeProvider','$locationProvider',
   function($routeProvider, $locationProvider) {
 
   $routeProvider.when('/list', {
-      templateUrl : 'views/task-progress-list.html',
+      templateUrl : 'views/task/task-progress-list.html',
       controller : 'TaskController'
-   }).when('/', {
-       templateUrl : 'views/task-progress-list.html',
+   }).when('/listToday', {
+       templateUrl : 'views/task/task-today-list.html',
+       controller : 'TaskController'
+    }).when('/', {
+       templateUrl : 'views/task/task-progress-list.html',
        controller : 'TaskController'
     }).when('/list-done', {
-       templateUrl : 'views/task-completed-list.html',
+       templateUrl : 'views/task/task-completed-list.html',
        controller : 'TaskController'
     }).when('/create', {
        templateUrl : 'views/create.html',

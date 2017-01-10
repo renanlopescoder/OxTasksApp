@@ -1,27 +1,11 @@
 // Main Controller of Tasks
 // Controle principal de tarefas
 
-taskApp.controller('TaskController', function ($scope, $routeParams, $http, $location) {
+taskApp.controller('TaskController', function ($scope, $routeParams, $http, $location, dateFormat, $filter) {
   $scope.tasks = [];
 
-// Data atual formatada (Brasil)
-// Current Date Formatted (Brasil)
-
-var getDateFormated = function(){
-    var date = new Date();
-    var dateTimeFormatted = 
-    date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes();
-    return dateTimeFormatted;
-}
-
-var dateFormat = function(date){
-    if(date == null || date == undefined){
-      date = new Date();
-    }
-    var dateTimeFormatted = 
-    date.getDate() +'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
-    return dateTimeFormatted;
-}
+$scope.date = $filter('date')(new Date(), 'yyyyMMddHH:mm');
+$scope.dateDay = $filter('date')(new Date(), 'yyyyMMdd');
 
 // Função inicial para obter a lista de tarefas
 // Initial function to get the list of tasks
@@ -29,6 +13,10 @@ var dateFormat = function(date){
   function init() {
     $http.get('/list')
       .success(function (retorno) {
+        for(task in retorno){
+          retorno[task].dateCompare = dateFormat.dateFormatCompare(retorno[task].taskDate);
+          retorno[task].dateCompareDay = dateFormat.dateFormatCompareDay(retorno[task].taskDate);
+        }
         $scope.tasks = retorno;
       })
       .error(function (erro) {
@@ -48,7 +36,7 @@ var dateFormat = function(date){
 
     task.active = 'false';
     task.progress = 'progress';
-    task.taskDate = dateFormat(task.taskDate);
+    task.taskDate = $filter('date')(task.taskDate, 'dd/MM/yyyy HH:mm');
     
     if(task.title == undefined || task.title == null){
       task.title = 'No Title';
@@ -85,6 +73,7 @@ var dateFormat = function(date){
     $http.post('/update/' + task._id, task)
       .success(function (retorno) {
         $scope.taskActive(task, 'false');
+        init();
       })
       .error(function (erro) {
         console.log(erro)
@@ -106,7 +95,7 @@ var dateFormat = function(date){
       progressStatus = 'Recovered at ';
     }
 
-    task.updatedStatusDate =  progressStatus + getDateFormated();
+    task.updatedStatusDate =  progressStatus + $filter('date')(new Date(), 'dd/MM/yyyy HH:mm');
     $http.post('/update/' + task._id, task)
       .success(function (retorno) {
         init();
