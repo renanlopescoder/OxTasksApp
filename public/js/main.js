@@ -3,7 +3,7 @@ var taskApp = angular.module('taskApp',['ngRoute','services']);
 taskApp.config(['$routeProvider','$locationProvider',
   function($routeProvider, $locationProvider) {
 
-  $routeProvider.when('/list', {
+  $routeProvider.when('https://ox-tasks-app.herokuapp.com', {
       templateUrl : 'views/task/task-progress-list.html',
       controller : 'TaskController'
    }).when('/listToday', {
