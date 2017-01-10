@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://heroku_95b328n7:oxtasksapp1324@ds161018.mlab.com:61018/heroku_95b328n7');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/oxtasks');
 
 // Função para imprimir no console se a conxão com o banco foi efetuada
 mongoose.connection.on('connected', function(){
