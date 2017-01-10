@@ -1,8 +1,12 @@
-var http = require('http');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.set('io',io);
+var porta = process.env.PORT || 3000;
 var app = require('./config/express');
 require('./config/database');
 
-http.createServer(app).listen(5000, function(){
-	console.log('Servidor Iniciado');
+http.listen(porta, function(){
+	 console.log("servidor rodando no heroku");
 }); 
 
