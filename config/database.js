@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/oxtasks');
-
+mongoose.connect('mongodb://renanlopes:renanlopes@ds161018.mlab.com:61018/heroku_95b328n7');
 // Função para imprimir no console se a conxão com o banco foi efetuada
 mongoose.connection.on('connected', function(){
 	console.log('Conectado ao Banco MongoDB');
