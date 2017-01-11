@@ -57,12 +57,12 @@
     </div>
   </div>
   <div class="row">
-    <div ng-repeat="task in tasks |  filter:search | orderBy: '-_id'" ng-if="task.dateCompareDay == dateDay">
+    <div ng-repeat="task in tasks |  filter:search | orderBy: '-_id'" ng-if="task.dateCompareDay == dateDay && task.progress == 'progress'">
       <div class="row hidden-sm hidden-md hidden-lg">
         <br>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card container-fluid ox-card-list card-alert {{task.dateCompare <= date && 'card-danger'}}">
+        <div class="card hoverable container-fluid ox-card-list card-alert {{task.dateCompare <= date && 'card-danger'}}">
           <div class="card-block">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
               <label class="label label-info" ng-hide="task.active == 'true'">Date: {{task.taskDate}}</label>
