@@ -10,7 +10,7 @@ api.lista = function (req, res){
 			res.status(500).json(error);
 		}
 		res.json(tasks);
-	}); //  Trará as informações da lista
+	}); // Trará as informações da lista
 
 };
 

@@ -36,8 +36,12 @@ $scope.dateDay = $filter('date')(new Date(), 'yyyyMMdd');
 
     task.active = 'false';
     task.progress = 'progress';
-    task.taskDate = $filter('date')(task.taskDate, 'dd/MM/yyyy HH:mm');
     
+    if(task.taskDate == undefined || task.taskDate == null){
+      task.taskDate = $filter('date')(new Date(), 'dd/MM/yyyy HH:mm');
+    }else{
+      task.taskDate = $filter('date')(task.taskDate, 'dd/MM/yyyy HH:mm');
+    }
     if(task.title == undefined || task.title == null){
       task.title = 'No Title';
     }
