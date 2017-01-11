@@ -107,7 +107,7 @@ background-color: rgba(120,220,120, 0.8);
 
   html, body{
     max-width: 100%;
-    background: url("../img/theme-01/background-mobile.png") no-repeat center center fixed!important;
+    background: url("../img/theme-01/background-mobile.png") repeat center center fixed!important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
