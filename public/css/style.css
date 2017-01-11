@@ -113,5 +113,19 @@ background-color: rgba(120,220,120, 0.8);
     -o-background-size: cover;
     background-size: cover;
   }
+  .modal-dialog{
+    margin: 0px!important;
+    padding:0px!important;
+    width:100%!important;
+    height:100%!important;
+  }
+  .modal-body{
+    padding-left: 0px!important;
+  }
+  .nav-pills li{
+    padding:0px!important;
+    margin: 2%!important;
+    width: 80px!important;
+  }
 }
 
